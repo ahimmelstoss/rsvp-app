@@ -1,28 +1,27 @@
-== README
+A user should be able to create an event. - /events/new
+They should be able to invite new users to that event - /events/1/invites/new
+A user should be able to rsvp to the event - /invites/1/edit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+event: 
+-has_many users through invites
+-has_many invites
 
-Things you may want to cover:
+invite:
+-belongs_to event
+-has_one user
+(basically a user_event table)
 
-* Ruby version
+user:
+-has_many events
+-has_many invites through events
 
-* System dependencies
+forms:
+events/new -> 
+-host: user name
+-event name
 
-* Configuration
+events/:id/invites/new ->
+-attendees :user names
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+invites/:id/edit ->
+-rsvp true or false?

@@ -1,0 +1,13 @@
+<h1>Invite guests to <%= @event.name %></h1>
+
+<%= form_for :invite, url: { action: "create" } do |f| %>
+  <h3>Invite: </h3>
+    <% @users.each do |user| %>
+      <input type="radio" name="user_id" value="<%= user.id %>"><%= user.name %><br>
+    <% end %>
+  </select>
+ 
+    <%= f.submit 'send invitation(s)' %>
+<% end %>
+<br>
+<%= link_to 'cancel', event_path(@event) %>
